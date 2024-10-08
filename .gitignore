@@ -128,3 +128,31 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Docker files
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# PM2 Process Manager
+.pids
+*.pid
+*.pid.lock
+
+# Test directories (Jest, Mocha, Chai)
+test/
+tests/
+__tests__/
+coverage/
+
+# ESLint and Prettier cache and logs
+.eslintcache
+.prettierignore
+.prettiercache
+
+# MongoDB data (in case you're running MongoDB locally)
+*.log
+*.lock
+*.key
+data/db/
+dump/
