@@ -5,7 +5,9 @@ const app = express();
 app.use(express.json());
 
 mongoose
-  .connect("mongodb://admin:password@34.195.53.21:8010/BackendDB?authSource=admin")
+  .connect(
+    "mongodb://admin:password@18.213.167.234:8010/BackendDB?authSource=admin"
+  )
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(3010, () => {

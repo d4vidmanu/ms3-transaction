@@ -2,7 +2,7 @@ const axios = require("axios");
 const Transaction = require("../models/transaction.model");
 const Promotion = require("../models/promotion.model");
 
-const USUARIO_URL = "http://54.234.253.100:3001";
+const USUARIO_URL = "http://gestion_usuario:8000";
 
 // Crear una nueva transacción
 exports.createTransaction = async (req, res) => {
