@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/BackendDB")
+  .connect("mongodb://admin:password@107.22.252.129:8010/BackendDB?authSource=admin")
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(3010, () => {
@@ -25,5 +25,5 @@ app.use("/transactions", transactionRoutes);
 app.use("/boletas", boletaRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Hello from Node API Server");
+  res.send("Hello from Node API Transaction");
 });
