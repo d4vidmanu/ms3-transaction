@@ -2,8 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 
+app.use(express.json());
+
 mongoose
-  .connect("mongodb://127.0.0.1:27017/test")
+  .connect("mongodb://127.0.0.1:27017/BackendDB")
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(3010, () => {
@@ -13,6 +15,14 @@ mongoose
   .catch((err) => {
     console.error("Error connecting to MongoDB", err);
   });
+
+const promotionRoutes = require("./src/routes/promotion.routes");
+const transactionRoutes = require("./src/routes/transaction.routes");
+const boletaRoutes = require("./src/routes/boleta.routes");
+
+app.use("/promotions", promotionRoutes);
+app.use("/transactions", transactionRoutes);
+app.use("/boletas", boletaRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello from Node API Server");
