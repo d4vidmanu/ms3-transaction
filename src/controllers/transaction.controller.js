@@ -2,7 +2,7 @@ const axios = require("axios");
 const Transaction = require("../models/transaction.model");
 const Promotion = require("../models/promotion.model");
 
-const USUARIO_URL = "http://gestion_usuario:8000";
+const USUARIO_URL = "http://gestion-usuario:8000";
 
 // Crear una nueva transacción
 exports.createTransaction = async (req, res) => {
@@ -12,17 +12,23 @@ exports.createTransaction = async (req, res) => {
 
     // Verificar si el usuario tiene una suscripción activa
     try {
-      const response = await axios.get(`${USUARIO_URL}/users/${user_id}/subscription`);
+      const response = await axios.get(
+        `${USUARIO_URL}/users/${user_id}/subscription`
+      );
 
       if (response.status === 200) {
         amount = 0; // Si la suscripción está activa, el monto es 0
       }
     } catch (err) {
       if (err.response && err.response.status === 404) {
-        console.log("Usuario no tiene suscripción activa, continuando con el proceso normal.");
+        console.log(
+          "Usuario no tiene suscripción activa, continuando con el proceso normal."
+        );
       } else {
         console.error("Error al verificar suscripción:", err);
-        return res.status(500).json({ error: "Error al verificar la suscripción del usuario" });
+        return res
+          .status(500)
+          .json({ error: "Error al verificar la suscripción del usuario" });
       }
     }
 
@@ -52,7 +58,6 @@ exports.createTransaction = async (req, res) => {
     res.status(500).json({ error: "Error al crear la transacción" });
   }
 };
-
 
 // Obtener todas las transacciones
 exports.getAllTransactions = async (req, res) => {
